@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Newster",
-  "description": "Rewrites clickbait headlines into concise summaries using Grok.",
+  "description": "Rewrites clickbait headlines into concise summaries using Cohere.",
   "version": "1.0",
   "permissions": ["storage", "scripting", "activeTab"],
   "host_permissions": ["<all_urls>"],
