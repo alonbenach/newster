@@ -2,17 +2,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const input = document.getElementById("cohereKey");
   const status = document.getElementById("status");
 
-  // Load key
-  chrome.storage.local.get(["cohereKey"], (result) => {
-    if (result.cohereKey) input.value = result.cohereKey;
-  });
+  // ❌ Removed auto-fill on load — box stays empty unless user types
 
-  // Save key
   document.getElementById("saveBtn").addEventListener("click", () => {
     const cohereKey = input.value.trim();
+    if (!cohereKey) return;
+
     chrome.storage.local.set({ cohereKey }, () => {
+      input.value = ""; // ✅ This will now stay cleared
       status.textContent = "Key saved!";
-      setTimeout(() => (status.textContent = ""), 2000);
+      status.style.color = "green";
+
+      setTimeout(() => {
+        status.textContent = "";
+        status.style.color = "";
+      }, 2000);
     });
   });
 });
