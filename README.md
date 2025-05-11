@@ -39,13 +39,22 @@ You’ll need your own API key (takes 30 seconds).
 
 ---
 
-## 🧪 Local Installation
+## Download
+
+You can download the latest release directly here:  
+👉 [Newster Extension (.zip)](https://github.com/alonbenach/newster/releases/latest)
+
+To install, follow the [manual installation instructions](#-local-installation).
+
+---
+
+## Local Installation
 
 You can install Newster manually by loading it as an unpacked extension:
 
 1. Clone this repo or download the `.zip`:
    ```bash
-   git clone https://github.com/yourusername/newster.git
+   git clone https://github.com/alonbenach/newster.git
 
     or download and extract newster.zip
 
@@ -59,11 +68,15 @@ You can install Newster manually by loading it as an unpacked extension:
 
 ❗Note: This extension is for personal, educational, or portfolio use only.
 
+---
+
 ## Legal & Ethics
 
 Newster does not bypass paywalls or unlock subscriber-only content.
 It attempts to summarize the first visible parts of a news article or headline for convenience.
 We recommend using it with publicly available content only.
+
+---
 
 ## Tech Stack
 
@@ -71,6 +84,8 @@ We recommend using it with publicly available content only.
 * Vanilla JS
 * Cohere summarization API
 * DOM injection + background service worker
+
+---
 
 ## Contributing
 If you have improvements or want to adapt Newster for a specific site — feel free to fork and submit a pull request!
