@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Newster Settings</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      width: 300px;
+    }
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+    }
+    #status {
+      margin-top: 10px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h2>Grok API Key</h2>
+  <p style="font-size: 0.9em; color: #555;">
+    Your key is stored <strong>only</strong> on your device. We do not send or save it anywhere else.
+  </p>
+  <input type="text" id="grokKey" placeholder="Enter your Grok API key" />
+  <button id="saveBtn">Save</button>
+  <div id="status"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>
