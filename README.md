@@ -75,4 +75,6 @@ We recommend using it with publicly available content only.
 ## Contributing
 If you have improvements or want to adapt Newster for a specific site — feel free to fork and submit a pull request!
 
-## Created by Alon Benach
+
+
+#### Created by: Alon Benach
