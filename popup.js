@@ -1,15 +1,18 @@
-document.getElementById("rewriteBtn").addEventListener("click", async () => {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("cohereKey");
+  const status = document.getElementById("status");
 
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    function: () => {
-      window.dispatchEvent(new CustomEvent("newster-rewrite-headlines"));
-    },
+  // Load key
+  chrome.storage.local.get(["cohereKey"], (result) => {
+    if (result.cohereKey) input.value = result.cohereKey;
   });
 
-  document.getElementById("status").textContent = "Rewriting...";
-  setTimeout(() => {
-    document.getElementById("status").textContent = "";
-  }, 2000);
+  // Save key
+  document.getElementById("saveBtn").addEventListener("click", () => {
+    const cohereKey = input.value.trim();
+    chrome.storage.local.set({ cohereKey }, () => {
+      status.textContent = "Key saved!";
+      setTimeout(() => (status.textContent = ""), 2000);
+    });
+  });
 });

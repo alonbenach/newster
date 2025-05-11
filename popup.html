@@ -1,29 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Newster</title>
+  <title>Newster Setup</title>
   <style>
     body {
       font-family: sans-serif;
       padding: 16px;
-      width: 250px;
+      width: 260px;
     }
-    button {
+    input, button {
       width: 100%;
-      padding: 10px;
-      font-size: 16px;
       margin-top: 10px;
+      padding: 8px;
+      font-size: 14px;
     }
     #status {
-      margin-top: 12px;
-      font-size: 0.9em;
+      font-size: 0.85em;
       color: green;
+      margin-top: 6px;
+    }
+    p {
+      font-size: 0.9em;
+      margin-bottom: 8px;
     }
   </style>
 </head>
 <body>
-  <h3>Newster 📰</h3>
-  <button id="rewriteBtn">Rewrite Headlines</button>
+  <p>
+    Hover headlines to reveal 🛈<br>
+    Click the icon to generate a summary.
+  </p>
+
+  <label for="cohereKey">Cohere API Key:</label>
+  <input type="text" id="cohereKey" placeholder="Paste your key here" />
+  <button id="saveBtn">Save Key</button>
   <div id="status"></div>
 
   <script src="popup.js"></script>
