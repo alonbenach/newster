@@ -44,19 +44,47 @@ const HEADLINE_SELECTORS = [
       event.stopPropagation();
       event.preventDefault();
 
-      if (el.querySelector(".newster-summary")) return;
+      if (document.querySelector(".newster-bubble")) return;
 
-      const summaryBox = document.createElement("div");
-      summaryBox.className = "newster-summary";
-      summaryBox.textContent = "Summarizing...";
-      summaryBox.style.fontSize = "0.85em";
-      summaryBox.style.marginTop = "6px";
-      summaryBox.style.background = "#f4f4f4";
-      summaryBox.style.border = "1px solid #ccc";
-      summaryBox.style.padding = "6px";
-      summaryBox.style.borderRadius = "4px";
-      summaryBox.style.maxWidth = "500px";
-      el.appendChild(summaryBox);
+      const bubble = document.createElement("div");
+      bubble.className = "newster-bubble";
+      bubble.textContent = "Summarizing...";
+      Object.assign(bubble.style, {
+        position: "absolute",
+        top: "0px",
+        left: "0px",
+        background: "#f9f9f9",
+        border: "1px solid #ccc",
+        padding: "10px",
+        borderRadius: "6px",
+        fontSize: "14px",
+        fontFamily: "sans-serif",
+        boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+        zIndex: "9999",
+        maxWidth: "400px",
+        minWidth: "200px",
+      });
+
+      // Close button
+      const closeBtn = document.createElement("span");
+      closeBtn.textContent = "×";
+      closeBtn.style.cssText = `
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #999;
+  `;
+      closeBtn.onclick = () => bubble.remove();
+      bubble.appendChild(closeBtn);
+
+      document.body.appendChild(bubble);
+
+      // Position bubble near icon
+      const rect = icon.getBoundingClientRect();
+      bubble.style.top = `${window.scrollY + rect.top + 20}px`;
+      bubble.style.left = `${window.scrollX + rect.left}px`;
 
       const headline = el.innerText.trim();
       const link = el.closest("a")?.href;
@@ -74,10 +102,9 @@ const HEADLINE_SELECTORS = [
             : `This headline appeared on a news site. Provide context:\n\n${headline}`;
 
         const summary = await summarizeWithCohere(prompt, cohereKey);
-        summaryBox.textContent = summary;
-        console.log("[Newster] Summary:", summary);
+        bubble.childNodes[0].textContent = summary;
       } catch (err) {
-        summaryBox.textContent = "Error summarizing.";
+        bubble.childNodes[0].textContent = "Error summarizing.";
         console.warn("[Newster] Summary error:", err);
       }
     });
