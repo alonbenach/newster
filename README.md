@@ -3,39 +3,40 @@
 **Newster** is a Chrome/Edge browser extension that transforms clickbait headlines into informative, concise summaries using Cohere’s AI.  
 Hover over any headline to reveal a small ℹ️ icon — click it to get a short, contextual summary of the article.
 
-> Ideal for readers who want signal, not noise.
+***Ideal for readers who want signal, not noise.***
 
 ---
 
 ## What It Does
 
 - ✅ Detects headlines on popular news sites
-- ✅ Attempts to fetch the linked article’s content
+- ✅ Fetches linked article content (if accessible)
 - ✅ Sends that content (or the headline alone, as fallback) to Cohere’s summarization API
 - ✅ Shows a floating summary bubble with a close button
+- ✅ Only activates on domains **you approve**
 - ✅ Keeps all API keys stored locally in your browser — nothing is tracked or sent elsewhere
 
 ---
 
 ## How to Use
 
-1. **Install the extension (see below)**
-2. Go to any news website (e.g. CNN, BBC, Fox, etc.)
-3. Hover over a headline → you’ll see a small ℹ️ icon appear
-4. Click the icon → get a summary bubble powered by Cohere
+1. Install the extension (see below)
+2. Visit a news website (e.g. BBC, CNN, etc.)
+3. Click the Newster icon in your browser
+4. Click “Allow summaries for this domain”
+5. Hover over a headline → click the ℹ️ icon → see a summary
 
 ---
 
-## Setup
+## API Setup (1-time only)
 
-Newster uses Cohere’s free summarization API.  
-You’ll need your own API key (takes 30 seconds).
+Newster uses Cohere’s summarization API. To use it, you’ll need a free API key:
 
-1. Go to [Cohere API Console](https://dashboard.cohere.com/api-keys)
-2. Copy your free API key
-3. Click the Newster icon in your browser
-4. Paste the key and click **Save Key**
-5. You’re ready to go!
+1. Get a key from [cohere.com/api-keys](https://dashboard.cohere.com/api-keys)
+2. Open Newster's **extension options**
+3. Paste your key into the input and save
+
+> You only need to do this once. The key is saved locally in your browser.
 
 ---
 
@@ -44,7 +45,7 @@ You’ll need your own API key (takes 30 seconds).
 You can download the latest release directly here:  
 👉 [Newster Extension (.zip)](https://github.com/alonbenach/newster/releases/latest)
 
-To install, follow the [manual installation instructions](#-local-installation).
+Then follow the instructions below to install manually.
 
 ---
 

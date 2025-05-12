@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Newster Settings</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      width: 300px;
-    }
-    input, button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 10px;
-    }
-    #status {
-      margin-top: 10px;
-      color: green;
-    }
-  </style>
-</head>
-<body>
-  <h2>Cohere API Key</h2>
-  <p style="font-size: 0.9em; color: #555;">
-    Your key is stored <strong>only</strong> on your device. We do not send or save it anywhere else.
-  </p>
-  <input type="text" id="cohereKey" placeholder="Enter your Cohere API key:" />
-  <button id="saveBtn">Save</button>
-  <div id="status"></div>
+  <head>
+    <title>Newster Options</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+        max-width: 400px;
+      }
+      input, button {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+      label {
+        display: block;
+        margin-top: 16px;
+      }
+      #status {
+        margin-top: 10px;
+        color: green;
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Newster Settings</h2>
 
-  <script src="options.js"></script>
-</body>
+    <p>
+      To use Newster, you need a free API key from Cohere.
+      You can get one at:<br />
+      <a href="https://dashboard.cohere.com/api-keys" target="_blank">
+        cohere.com/api-keys
+      </a>
+    </p>
+
+    <label for="cohereKey">Cohere API Key:</label>
+    <input type="text" id="cohereKey" placeholder="Paste your key here..." />
+    <button id="saveBtn">Save Key</button>
+
+    <div id="status"></div>
+
+    <script src="options.js"></script>
+  </body>
 </html>

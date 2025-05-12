@@ -9,15 +9,39 @@ const HEADLINE_SELECTORS = [
   ".story-title",
 ];
 
-(async function init() {
+// Check if the domain is allowed
+chrome.storage.local.get(["allowedDomains"], (result) => {
+  const domain = window.location.hostname;
+  if (!result.allowedDomains?.includes(domain)) return;
+
+  init(); // only run if allowed
+});
+
+let lastScan = 0;
+
+async function init() {
   const cohereKey = await getCohereKey();
   if (!cohereKey) {
     console.warn("[Newster] No Cohere key found");
     return;
   }
 
+  // Run immediately
+  scanAndDecorateHeadlines(cohereKey);
+
+  // Also repeat every second to catch React/Dynamic headlines
+  setInterval(() => {
+    const now = Date.now();
+    if (now - lastScan > 1000) {
+      scanAndDecorateHeadlines(cohereKey);
+      lastScan = now;
+    }
+  }, 1000);
+}
+
+function scanAndDecorateHeadlines(cohereKey) {
   const headlines = findHeadlines();
-  console.log(`[Newster] Found ${headlines.length} potential headlines`);
+  console.log(`[Newster] Scanning ${headlines.length} elements`);
 
   for (const el of headlines) {
     if (el.dataset.newsterDecorated) continue;
@@ -65,23 +89,21 @@ const HEADLINE_SELECTORS = [
         minWidth: "200px",
       });
 
-      // Close button
       const closeBtn = document.createElement("span");
       closeBtn.textContent = "×";
       closeBtn.style.cssText = `
-    position: absolute;
-    top: 4px;
-    right: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #999;
-  `;
+        position: absolute;
+        top: 4px;
+        right: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #999;
+      `;
       closeBtn.onclick = () => bubble.remove();
       bubble.appendChild(closeBtn);
 
       document.body.appendChild(bubble);
 
-      // Position bubble near icon
       const rect = icon.getBoundingClientRect();
       bubble.style.top = `${window.scrollY + rect.top + 20}px`;
       bubble.style.left = `${window.scrollX + rect.left}px`;
@@ -109,7 +131,7 @@ const HEADLINE_SELECTORS = [
       }
     });
   }
-})();
+}
 
 function findHeadlines() {
   const found = [];

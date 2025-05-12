@@ -1,22 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("cohereKey");
-  const status = document.getElementById("status");
+  const allowBtn = document.getElementById("allowDomainBtn");
 
-  // ❌ Removed auto-fill on load — box stays empty unless user types
+  allowBtn.addEventListener("click", () => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      const url = new URL(tabs[0].url);
+      const domain = url.hostname;
 
-  document.getElementById("saveBtn").addEventListener("click", () => {
-    const cohereKey = input.value.trim();
-    if (!cohereKey) return;
+      chrome.storage.local.get(["allowedDomains"], (result) => {
+        const domains = result.allowedDomains || [];
 
-    chrome.storage.local.set({ cohereKey }, () => {
-      input.value = ""; // ✅ This will now stay cleared
-      status.textContent = "Key saved!";
-      status.style.color = "green";
-
-      setTimeout(() => {
-        status.textContent = "";
-        status.style.color = "";
-      }, 2000);
+        if (!domains.includes(domain)) {
+          domains.push(domain);
+          chrome.storage.local.set({ allowedDomains: domains }, () => {
+            alert(`Summaries enabled for ${domain}`);
+          });
+        } else {
+          alert(`${domain} is already enabled.`);
+        }
+      });
     });
   });
 });

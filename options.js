@@ -11,14 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!newKey) return;
 
     chrome.storage.local.set({ cohereKey: newKey }, () => {
-      input.value = ""; //
+      input.value = "";
       status.textContent = "Key saved!";
-      status.style.color = "green";
-
-      setTimeout(() => {
-        status.textContent = "";
-        status.style.color = "";
-      }, 2000);
+      setTimeout(() => (status.textContent = ""), 2000);
     });
   });
 });

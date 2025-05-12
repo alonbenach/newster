@@ -1,44 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Newster Setup</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 16px;
-      width: 260px;
-    }
-    input, button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 8px;
-      font-size: 14px;
-    }
-    #status {
-      font-size: 0.85em;
-      color: green;
-      margin-top: 6px;
-    }
-    p {
-      font-size: 0.9em;
-      margin-bottom: 8px;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <title>Newster</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 10px;
+        width: 250px;
+      }
+      button {
+        width: 100%;
+        padding: 6px;
+        margin-top: 10px;
+        font-size: 14px;
+      }
+      a {
+        color: #0066cc;
+      }
+    </style>
+  </head>
+  <body>
+    <p><strong>Please add an API key to use Newster.</strong></p>
     <p>
-    Hover headlines to reveal 
-    <img src="icons/info.svg" alt="info" width="14" height="14" style="vertical-align: middle;" />
-    <br>
-    Click the icon to generate a summary.
+      You can set your key in the <a href="options.html" target="_blank">extension options</a>.
     </p>
 
+    <hr />
 
-  <label for="cohereKey">Cohere API Key:</label>
-  <input type="text" id="cohereKey" placeholder="Paste your key here" />
-  <button id="saveBtn">Save Key</button>
-  <div id="status"></div>
+    <button id="allowDomainBtn">Allow summaries for this domain</button>
 
-  <script src="popup.js"></script>
-</body>
+    <script src="popup.js"></script>
+  </body>
 </html>
